@@ -1,5 +1,6 @@
 import React from "react";
 import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner";
 class App extends React.Component {
   // initialize the state object
   state = { latitude: null, longitude: null, error: "" };
@@ -14,16 +15,20 @@ class App extends React.Component {
     );
   }
 
-  // componentDidUpdate() {
-  //   console.log("Component updated");
-  // }
+  renderContent() {
+    if (this.state.error && !this.state.latitude) {
+      return <div>Error: {this.state.error}</div>;
+    }
+
+    if (!this.state.error && this.state.latitude) {
+      return <SeasonDisplay latitude={this.state.latitude} />;
+    }
+
+    return <Spinner message="Please accept the location request" />;
+  }
 
   render() {
-    return (
-      <div>
-        <SeasonDisplay latitude={this.state.latitude} />
-      </div>
-    );
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 

@@ -1,3 +1,5 @@
+import "./SeasonDisplay.css";
+
 const SeasonDisplay = (props) => {
   const month = new Date().getMonth();
   const location = props.latitude;
@@ -23,12 +25,11 @@ const SeasonDisplay = (props) => {
 
   const seasonName = season(month, location);
   const { text, iconName } = seasonConfig[seasonName];
-
   return (
-    <div>
-      <i className={`${iconName} icon massive`} />
+    <div className={`season-display ${seasonName}`}>
+      <i className={`${iconName} icon massive icon-left`} />
       <h1>{text}</h1>
-      <i className={`${iconName} icon massive`} />
+      <i className={`${iconName} icon massive icon-right`} />
     </div>
   );
 };
