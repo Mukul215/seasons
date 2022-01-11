@@ -22,11 +22,6 @@ class App extends React.Component {
     return (
       <div>
         <SeasonDisplay latitude={this.state.latitude} />
-        {this.state.error === "" ? (
-          <p>Latitude: {this.state.latitude}</p>
-        ) : (
-          <p>Error: {this.state.error}</p>
-        )}
       </div>
     );
   }

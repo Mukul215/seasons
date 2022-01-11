@@ -2,30 +2,33 @@ const SeasonDisplay = (props) => {
   const month = new Date().getMonth();
   const location = props.latitude;
 
+  const seasonConfig = {
+    Summer: {
+      text: "Let's hit the beach",
+      iconName: "sun",
+    },
+    Winter: {
+      text: "Burr, it is chilly",
+      iconName: "snowflake",
+    },
+  };
+
   const season = (month, location) => {
-    if (location >= 0) {
-      if (month >= 0 && month <= 2) {
-        return "Winter";
-      } else if (month >= 3 && month <= 8) {
-        return "Summer";
-      } else {
-        return "Winter";
-      }
+    if (month > 2 && month < 9) {
+      return location > 0 ? "Summer" : "Winter";
     } else {
-      if (month >= 0 && month <= 2) {
-        return "Summer";
-      } else if (month >= 3 && month <= 8) {
-        return "Winter";
-      } else {
-        return "Summer";
-      }
+      return location > 0 ? "Winter" : "Summer";
     }
   };
+
   const seasonName = season(month, location);
+  const { text, iconName } = seasonConfig[seasonName];
 
   return (
     <div>
-      <h1>This the current season: {seasonName}</h1>
+      <i className={`${iconName} icon massive`} />
+      <h1>{text}</h1>
+      <i className={`${iconName} icon massive`} />
     </div>
   );
 };
